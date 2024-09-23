@@ -7,7 +7,7 @@ type Props = {
 
 const Layout = (props: Props) => {
   return (
-    <div className="pt-20 px-[5%]">
+    <div className="pt-20 px-[5%] ">
       <Navbar />
       {props.children}
     </div>
