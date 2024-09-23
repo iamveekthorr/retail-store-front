@@ -1,10 +1,10 @@
-'use client'
+"use client";
 import axiosInstance from "@/lib/services/api-instance";
 import { create } from "zustand";
 
 type User = unknown;
 
-localStorage.getItem("ACCESS_TOKEN");
+
 
 interface AuthState {
   user: User | null;

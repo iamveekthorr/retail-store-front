@@ -1,6 +1,9 @@
-import Home from "@/containers/Home";
+import dynamic from 'next/dynamic';
 
-const page = () => {
+// Dynamically import Home component with SSR disabled
+const Home = dynamic(() => import('@/containers/Home'), { ssr: false });
+
+const Page = () => {
   return (
     <div>
       <Home />
@@ -8,4 +11,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
