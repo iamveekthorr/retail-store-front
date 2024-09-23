@@ -1,3 +1,4 @@
+'use client'
 import axiosInstance from "@/lib/services/api-instance";
 import { create } from "zustand";
 
