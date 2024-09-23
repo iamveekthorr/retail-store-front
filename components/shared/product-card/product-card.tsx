@@ -45,14 +45,14 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       <img
         src={product.image}
         alt={product.productName}
-        className="w-full h-48 object-cover mb-4"
+        className="w-full h-24 md:h-48 object-cover mb-4"
       />
 
       {/* Product Info */}
 
       <div className="info px-3 py-2 space-y-2 grid">
         <div className=" flex justify-between items-center">
-          <div className="font-bold text-xl ">{product.productName}</div>
+          <div className="font-bold text-lg md:text-xl ">{product.productName}</div>
           {/* <p className="text-gray-700 text-base mb-2">{product.description}</p> */}
 
           <p className="capitalize text-gray-600  bg-slate-200/40 p-1 px-1.5 text-xs">
