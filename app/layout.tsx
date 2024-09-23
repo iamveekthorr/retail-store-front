@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "@fontsource/poppins";
-import { Toaster } from "sonner";
+import Provider from "./provider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen">
-        {children} <Toaster position="top-center" richColors />
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
