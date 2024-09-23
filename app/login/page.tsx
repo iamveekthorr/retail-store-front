@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { zoomies } from "ldrs";
-
 import {
   Card,
   CardContent,
@@ -18,8 +17,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export const description =
-  "A simple login form with email and password. The submit button says 'Sign in'.";
+
 zoomies.register();
 
 interface LoginFormInputs {
