@@ -1,10 +1,11 @@
-import { useCartStore } from "@/store/useCart-store";
-import { Product } from "@/store/useProduct-Store";
-import React, { useState } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { TfiTrash } from "react-icons/tfi";
-import { toast } from "sonner";
+import { useCartStore } from '@/store/useCart-store';
+import { Product } from '@/store/useProduct-Store';
+import React, { useState } from 'react';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { TfiTrash } from 'react-icons/tfi';
+import { toast } from 'sonner';
+import Image from 'next/image';
 
 interface CartItemProps {
   item: {
@@ -28,9 +29,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     setUpdating(true); // Set updating loader to true
     try {
       await updateCartItem(productId, quantity);
-      toast.success("Cart updated successfully!");
+      toast.success('Cart updated successfully!');
     } catch (err) {
-      toast.error("Failed to update cart item.");
+      toast.error('Failed to update cart item.');
     } finally {
       setUpdating(false); // Reset updating loader
     }
@@ -40,9 +41,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     setRemoving(true); // Set removing loader to true
     try {
       await removeFromCart(productId);
-      toast.success("Item removed successfully!");
+      toast.success('Item removed successfully!');
     } catch (err) {
-      toast.error("Failed to remove cart item.");
+      toast.error('Failed to remove cart item.');
     } finally {
       setRemoving(false); // Reset removing loader
     }
@@ -51,9 +52,12 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   return (
     <div className="flex justify-between items-center p-2 py-4 bg-slate-200/30 rounded-lg h-[max-content]">
       <div className="flex items-center">
-        <img
-          src={item.product.image}
+        <Image
+          width={100}
+          height={100}
+          src="/images/fallback.jpeg"
           alt={item.product.productName}
+          onError={(e) => (e.currentTarget.src = 'images/fallback.jpeg')}
           className="w-16 h-16 mr-4"
         />
         <div>
@@ -72,18 +76,18 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
         />
         <Button
           onClick={() => handleUpdateCartItem(item.product._id, quantity)}
-          disabled={updating } // Disable button during action
+          disabled={updating} // Disable button during action
           className="bg-blue-500 text-white px-3 py-1 rounded"
         >
-          {updating ? "Updating..." : "Update"}
+          {updating ? 'Updating...' : 'Update'}
         </Button>
         <Button
-          size={"icon"}
+          size={'icon'}
           onClick={() => handleRemoveCartItem(item.product._id)}
           disabled={removing} // Disable button during action
           className="bg-red-500 text-white px-3 py-1 rounded ml-4"
         >
-          {removing ? "Removing..." : <TfiTrash />}
+          {removing ? 'Removing...' : <TfiTrash />}
         </Button>
       </div>
     </div>

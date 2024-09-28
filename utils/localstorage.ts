@@ -1,8 +1,8 @@
-'use client'
+'use client';
 // Function to get an item from localStorage
 export const getLocalStorageItem = (key: string): string | null => {
   try {
-    const value = localStorage.getItem(key);
+    const value = localStorage?.getItem(key);
     return value ? JSON.parse(value) : null;
   } catch (error) {
     console.error(`Error getting localStorage key "${key}":, error`);
@@ -13,7 +13,7 @@ export const getLocalStorageItem = (key: string): string | null => {
 // Function to set an item in localStorage
 export const setLocalStorageItem = (key: string, value: unknown): void => {
   try {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage?.setItem(key, JSON.stringify(value));
   } catch (error) {
     console.error(`Error setting localStorage key "${key}":, error`);
   }
@@ -22,7 +22,7 @@ export const setLocalStorageItem = (key: string, value: unknown): void => {
 // Function to remove an item from localStorage
 export const removeLocalStorageItem = (key: string): void => {
   try {
-    localStorage.removeItem(key);
+    localStorage?.removeItem(key);
   } catch (error) {
     console.error(`Error removing localStorage key "${key}":, error`);
   }

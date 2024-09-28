@@ -1,11 +1,11 @@
-"use client";
-import { useAuthStore } from "@/store/useAuth-store";
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
-import { useCartStore } from "@/store/useCart-store";
-import { LuShoppingCart } from "react-icons/lu";
+'use client';
+import { useAuthStore } from '@/store/useAuth-store';
+import Link from 'next/link';
+import React, { useEffect } from 'react';
+import { Button } from '../ui/button';
+import { useRouter } from 'next/navigation';
+import { useCartStore } from '@/store/useCart-store';
+import { LuShoppingCart } from 'react-icons/lu';
 
 const Navbar = () => {
   const { accessToken, logout } = useAuthStore();
@@ -17,7 +17,7 @@ const Navbar = () => {
   }, [fetchCart]);
 
   return (
-    <nav className="fixed top-0 left-0 w-full h-[10vh] px-[5%] flex justify-between items-center tracking-wide">
+    <nav className="fixed top-0 left-0 w-full h-[10vh] px-[5%] flex justify-between items-center tracking-wide bg-white py-10 shadow-lg">
       <Link href="/" className="font-bold text-xl">
         Home
       </Link>
@@ -39,10 +39,10 @@ const Navbar = () => {
               )}
             </Link>
             <Button
-              size={"sm"}
+              size={'sm'}
               onClick={() => {
                 logout();
-                router.push("/login");
+                router.push('/login');
               }}
               className="text-white bg-red-500/60 hover:bg-red-500 transition-all px-5 rounded"
             >

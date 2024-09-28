@@ -8,24 +8,11 @@ import Image from 'next/image';
 zoomies.register();
 
 // Define the product type with an image field
-export interface Product {
-  _id: string;
-  productName: string;
-  category: string;
-  store: {
-    _id: string;
-    name: string;
-    description: string;
-  };
-  description: string;
-  price: number;
-  quantity: number;
-  id: string;
-  image: string; // New field for the image URL
-}
 
 // ProductCard Component
-const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+const RecommendationCard: React.FC<{ product: Record<string, string> }> = ({
+  product,
+}) => {
   const { addToCart, error, success } = useCartStore();
 
   const add = () => {
@@ -44,11 +31,11 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       {/* Product Image */}
       <Image
         src="/images/fallback.jpeg"
-        width={100}
-        height={100}
         alt={product.productName}
         className="w-full h-24 md:h-48 object-cover mb-4"
         onError={(e) => (e.currentTarget.src = 'images/fallback.jpeg')}
+        width={100}
+        height={100}
       />
 
       {/* Product Info */}
@@ -58,11 +45,6 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           <div className="font-bold text-lg md:text-xl ">
             {product.productName}
           </div>
-          {/* <p className="text-gray-700 text-base mb-2">{product.description}</p> */}
-
-          <p className="capitalize text-gray-600  bg-slate-200/40 p-1 px-1.5 text-xs">
-            {product.store.name}
-          </p>
         </div>
         <p className="text-sm text-gray-600">${product.price}</p>
         <Button
@@ -77,4 +59,4 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default RecommendationCard;
