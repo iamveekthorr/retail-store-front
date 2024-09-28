@@ -21,8 +21,6 @@ export default function Home() {
 
   const authStore = useAuthStore();
 
-  // console.log(authStore);
-
   const api = axios.create({
     baseURL: 'https://recommender-api-prp9.onrender.com',
     // You can add other default settings here, such as headers
@@ -32,11 +30,10 @@ export default function Home() {
     fetchProducts();
     if (authStore.accessToken?.length) {
       // Get recommendations for the current user
-      console.log('data', authStore);
       api
         .get(
           `/api/recommendations/${
-            (authStore?.user as Record<string, string>).id
+            (authStore?.user as Record<string, string>)?.id
           }`
         )
         .then(({ data }) => setRecommendations(data.data));
@@ -65,7 +62,7 @@ export default function Home() {
                 ))
               ) : (
                 <div className="col-span-full text-center text-gray-500">
-                  You have to make put things in your cart ti have
+                  You have to make put things in your cart to have
                   recommendations.
                 </div>
               )}
