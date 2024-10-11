@@ -2,7 +2,7 @@
 
 import CartItem from '@/components/shared/cart-item';
 import { useCartStore } from '@/store/useCart-store';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { bouncy } from 'ldrs';
 import { toast } from 'sonner';
 import { Textarea } from '@/components/ui/textarea';
@@ -21,16 +21,19 @@ const CartPage: React.FC = () => {
   const router = useRouter();
 
   // Function to fetch cart with local loading state
-  const handleFetchCart = async () => {
-    setLoading(true);
-    try {
-      await fetchCart();
-      setLoading(false);
-    } catch (err) {
-      setError('Failed to fetch cart');
-      setLoading(false);
-    }
-  };
+  const handleFetchCart = useCallback(
+    () => async () => {
+      setLoading(true);
+      try {
+        await fetchCart();
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to fetch cart');
+        setLoading(false);
+      }
+    },
+    [fetchCart]
+  );
 
   // Calculate total items and subtotal
   const totalItems =
@@ -63,7 +66,7 @@ const CartPage: React.FC = () => {
 
   useEffect(() => {
     handleFetchCart(); // Fetch the cart when the component mounts
-  }, []);
+  }, [handleFetchCart]);
 
   if (loading) {
     return (
